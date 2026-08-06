@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accueil</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <span class="span1">Bac</span><span class="span2">Info</span>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Accueil</a>
+        <a href="matières.html">Matières</a>
+        <a href="videos.html">Vidéos</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 id="haut">Tout ce dont tu as besoin pour réussir ton Bac !</h1>
+        <p>
+          Résumés de cours, vidéos, exercices et entraide pour les élèves
+          tunisiens.
+        </p>
+        <button id="bt"><a href="#bt">À propos </a></button>
+      </div>
+      <div class="hero-image">
+        <img src="herosection.png" alt="student studying" />
+      </div>
+    </section>
+    <section class="cards-section" id="card">
+      <div class="about-card">
+        <span class="badge">Bienvenue sur BacInfo</span>
+        <h1>Chers collègues, futurs bacheliers,</h1>
+
+        <div class="text-content">
+          <p>
+            Après avoir traversé cette formidable aventure du Baccalauréat,
+            décroché mon diplôme en sciences informatiques avec une mention très
+            bien, une moyenne de <strong>18,59/20</strong>, et obtenu la
+            <strong
+              >première place de la section au niveau de la délégation de Ben
+              Guerdane</strong
+            >, j'ai ressenti le besoin profond de tendre la main à mon tour.
+          </p>
+          <p>
+            Étant consciente que les ressources et les références pour notre
+            filière sont souvent moins nombreuses et plus difficiles à trouver
+            que dans les autres sections, j'ai voulu créer cet espace. Ce site
+            n'est ni parfait ni infaillible ; il est le fruit de mes efforts, de
+            mes nuits blanches de réflexion et d'apprentissage solitaire, mené
+            en grande partie sans le soutien massif de cours particuliers.
+          </p>
+          <p>
+            Une grande partie de ce contenu s'appuie sur des séries d'exercices
+            partagées par des enseignants et des passionnés sur Internet et les
+            réseaux sociaux. Je tiens à leur exprimer ici ma plus profonde
+            gratitude. Je n'ai jamais eu la prétention de m'approprier leur
+            travail : mon unique objectif a été de le rassembler en un seul
+            endroit, de le structurer, pour vous épargner l'épuisement des
+            recherches interminables.
+          </p>
+          <p style="font-style: italic; color: #64748b; margin-top: 15px">
+            Puisse ce travail vous accompagner vers la réussite. Bon courage à
+            tous ! ✨
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-s1">
+        <h2><span class="span1">Bac</span><span class="span2">Info</span></h2>
+        <p>Ton partenaire pour réussir le Bac Informatique</p>
+        <div class="footer-s1-2">
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="matières.html">Matières</a></li>
+            <li><a href="videos.html">Vidéos</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <!-- Social Icons -->
+          <div class="footer-social">
+            <!-- Instagram -->
+            <span class="icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+                />
+              </svg>
+            </span>
+
+            <!-- Facebook -->
+            <span class="icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M13 22v-9h3l1-4h-4V7c0-1 .5-2 2-2h2V1h-3c-3 0-5 2-5 5v3H6v4h3v9z"
+                />
+              </svg>
+            </span>
+
+            <!-- LinkedIn -->
+            <span class="icon">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M4 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm1 6H3v12h2V9zm6 0H9v12h2v-6c0-2 3-2 3 0v6h2v-7c0-4-4-4-6-2V9z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        style="
+          max-width: 1100px;
+          margin: 30px auto 0;
+          padding-top: 20px;
+          border-top: 1px solid #e2e8f0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          font-size: 13px;
+          color: #64748b;
+        "
+      >
+        <p>2026 © BacInfo – Designed by Tesnim Chandoul</p>
+
+        <!-- عداد مصغر وأنيق في نفس السطر -->
+        <div style="display: flex; align-items: center; gap: 6px">
+          <span>👁️ Visiteurs :</span>
+          <span id="visitor-count" style="font-weight: 600; color: #2563eb"
+            >...</span
+          >
+        </div>
+      </div>
+    </footer>
+    <script>
+      fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("visitor-count").innerText = data.count;
+        })
+        .catch((error) => {
+          document.getElementById("visitor-count").innerText = "1";
+        });
+    </script>
+    <script src="index-avis.js"></script>
+  </body>
+</html>
