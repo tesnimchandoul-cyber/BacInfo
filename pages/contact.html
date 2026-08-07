@@ -75,14 +75,18 @@
         </div>
       </section>
     </main>
+
     <script>
       fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
         .then((response) => response.json())
         .then((data) => {
-          document.getElementById("visitor-count").innerText = data.count;
+          console.log(data);
+
+          document.getElementById("visitor-count").innerText =
+            data.value !== undefined ? data.value : data.count;
         })
         .catch((error) => {
-          document.getElementById("visitor-count").innerText = "1";
+          console.error("Error fetching counter:", error);
         });
     </script>
   </body>

@@ -142,7 +142,6 @@
       >
         <p>2026 © BacInfo – Designed by Tesnim Chandoul</p>
 
-        <!-- عداد مصغر وأنيق في نفس السطر -->
         <div style="display: flex; align-items: center; gap: 6px">
           <span>👁️ Visiteurs :</span>
           <span id="visitor-count" style="font-weight: 600; color: #2563eb"
@@ -151,38 +150,19 @@
         </div>
       </div>
     </footer>
-    
-    <!-- CounterAPI V2 browser client. V1 was retired and returns HTTP 410. -->
-    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
+
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const countElement = document.getElementById("visitor-count");
+      fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
 
-        // Prevent a null-element error if this script is reused on another page.
-        if (!countElement) return;
-
-        if (typeof Counter === "undefined") {
-          console.error("CounterAPI client could not be loaded.");
-          countElement.textContent = "—";
-          return;
-        }
-
-        const counter = new Counter({ workspace: "bacinfo" });
-
-        counter
-          .up("visits")
-          .then((result) => {
-            countElement.textContent = String(result.value);
-          })
-          .catch((error) => {
-            console.error("CounterAPI V2 error:", error);
-            countElement.textContent = "—";
-          });
-      });
+          document.getElementById("visitor-count").innerText =
+            data.value !== undefined ? data.value : data.count;
+        })
+        .catch((error) => {
+          console.error("Error fetching counter:", error);
+        });
     </script>
-<<<<<<< HEAD
-=======
-    <script src="js/main.js"></script>
->>>>>>> 3a7297a940f7e33f6583ab52861d4a788520643f
   </body>
 </html>
