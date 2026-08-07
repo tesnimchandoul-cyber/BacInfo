@@ -155,13 +155,16 @@
       fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-
-          document.getElementById("visitor-count").innerText =
-            data.value !== undefined ? data.value : data.count;
+          if (data && (data.count !== undefined || data.value !== undefined)) {
+            document.getElementById("visitor-count").innerText =
+              data.count !== undefined ? data.count : data.value;
+          } else {
+            document.getElementById("visitor-count").innerText = "1";
+          }
         })
         .catch((error) => {
-          console.error("Error fetching counter:", error);
+          console.error("Counter Error:", error);
+          document.getElementById("visitor-count").innerText = "1";
         });
     </script>
   </body>
