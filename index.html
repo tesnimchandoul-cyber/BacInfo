@@ -151,15 +151,38 @@
         </div>
       </div>
     </footer>
+    
+    <!-- CounterAPI V2 browser client. V1 was retired and returns HTTP 410. -->
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script>
-      fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
-        .then((response) => response.json())
-        .then((data) => {
-          document.getElementById("visitor-count").innerText = data.count;
-        })
-        .catch((error) => {
-          document.getElementById("visitor-count").innerText = "1";
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        const countElement = document.getElementById("visitor-count");
+
+        // Prevent a null-element error if this script is reused on another page.
+        if (!countElement) return;
+
+        if (typeof Counter === "undefined") {
+          console.error("CounterAPI client could not be loaded.");
+          countElement.textContent = "—";
+          return;
+        }
+
+        const counter = new Counter({ workspace: "bacinfo" });
+
+        counter
+          .up("visits")
+          .then((result) => {
+            countElement.textContent = String(result.value);
+          })
+          .catch((error) => {
+            console.error("CounterAPI V2 error:", error);
+            countElement.textContent = "—";
+          });
+      });
     </script>
+<<<<<<< HEAD
+=======
+    <script src="js/main.js"></script>
+>>>>>>> 3a7297a940f7e33f6583ab52861d4a788520643f
   </body>
 </html>
