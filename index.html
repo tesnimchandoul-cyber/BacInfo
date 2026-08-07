@@ -151,32 +151,35 @@
         </div>
       </div>
     </footer>
+    
+    <!-- CounterAPI V2 browser client. V1 was retired and returns HTTP 410. -->
+    <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const countElement = document.getElementById("visitor-count");
 
-  document.addEventListener("DOMContentLoaded", () => {
-    fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
-      .then((response) => {
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-       
-        if (data && typeof data.count !== "undefined") {
-          document.getElementById("visitor-count").innerText = data.count;
-        } else {
-          throw new Error("Invalid data format received from API");
-        }
-      })
-      .catch((error) => {
+        // Prevent a null-element error if this script is reused on another page.
+        if (!countElement) return;
 
-        console.error("Counter API Error:", error);
-        document.getElementById("visitor-count").innerText = "1";
+        if (typeof Counter === "undefined") {
+          console.error("CounterAPI client could not be loaded.");
+          countElement.textContent = "—";
+          return;
+        }
+
+        const counter = new Counter({ workspace: "bacinfo" });
+
+        counter
+          .up("visits")
+          .then((result) => {
+            countElement.textContent = String(result.value);
+          })
+          .catch((error) => {
+            console.error("CounterAPI V2 error:", error);
+            countElement.textContent = "—";
+          });
       });
-  });
-</script>
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>
