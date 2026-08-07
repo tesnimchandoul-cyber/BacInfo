@@ -152,15 +152,31 @@
       </div>
     </footer>
     <script>
-      fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
-        .then((response) => response.json())
-        .then((data) => {
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
+      .then((response) => {
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+       
+        if (data && typeof data.count !== "undefined") {
           document.getElementById("visitor-count").innerText = data.count;
-        })
-        .catch((error) => {
-          document.getElementById("visitor-count").innerText = "1";
-        });
-    </script>
+        } else {
+          throw new Error("Invalid data format received from API");
+        }
+      })
+      .catch((error) => {
+
+        console.error("Counter API Error:", error);
+        document.getElementById("visitor-count").innerText = "1";
+      });
+  });
+</script>
     <script src="js/main.js"></script>
   </body>
 </html>
