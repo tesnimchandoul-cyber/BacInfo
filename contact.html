@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contactez BacInfo pour poser une question, proposer une correction ou partager une ressource."
+    />
+    <title>Contact | BacInfo</title>
+
+    <!-- Use contact.css if that is the filename of the corrected stylesheet. -->
+    <link rel="stylesheet" href="../css/contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <a class="logo" href="../index.html" aria-label="BacInfo - Accueil">
+        <span class="span1">Bac</span><span class="span2">Info</span>
+      </a>
+
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="../index.html">Accueil</a></li>
+          <li><a href="matières.html">Matières</a></li>
+          <li><a href="videos.html">Vidéos</a></li>
+          <li>
+            <a href="contact.html" class="active" aria-current="page"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="contact-wrapper">
+      <section class="contact-container" aria-labelledby="contact-title">
+        <div class="contact-info">
+          <h1 id="contact-title">Contactez-nous</h1>
+          <p class="subtitle">Une question ? Une suggestion ?</p>
+          <p><strong>BacInfo</strong> est là pour t'aider.</p>
+
+          <div class="info-box">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:official.bacinfo@gmail.com" class="email-btn">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              <span>Envoyer un e-mail</span>
+            </a>
+          </div>
+
+          <p class="description">
+            BacInfo a été conçu pour vous accompagner dans votre parcours de
+            bachelier. Pour toute remarque, suggestion de correction ou apport
+            de ressources, vous pouvez nous écrire directement par e-mail.
+          </p>
+
+          <div class="contact-link-box">
+            <i class="fas fa-at icon" aria-hidden="true"></i>
+            <a href="mailto:official.bacinfo@gmail.com" class="contact-link">
+              official.bacinfo@gmail.com
+            </a>
+          </div>
+
+          <p class="visitors-count">
+            <i class="fas fa-eye" aria-hidden="true"></i>
+            <span>Visiteurs :</span>
+            <span id="visitor-count">…</span>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-s2">
+      <p>2026 © BacInfo — Designed by Tesnim Chandoul</p>
+    </footer>
+
+    <script>
+      const visitorCount = document.getElementById("visitor-count");
+
+      fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Impossible de récupérer le nombre de visiteurs.");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          visitorCount.textContent = data.count ?? "1";
+        })
+        .catch(() => {
+          visitorCount.textContent = "1";
+        });
+    </script>
+  </body>
+</html>
