@@ -113,14 +113,14 @@ small {
 
 header,
 .header {
-  position: relative;
+  position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.2rem 6%;
-  background: rgba(10, 18, 48, 0.82);
+  padding: 0.8rem 1.5rem;
+  background: rgba(10, 18, 48, 0.88);
   box-shadow: 0 1px 0 rgba(60, 182, 230, 0.15), 0 4px 24px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -151,11 +151,37 @@ header::after,
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.9rem 1.6rem;
+}
+
+/* Hidden Checkbox for Pure CSS Mobile Menu Trigger */
+.nav-toggle {
+  display: none;
+}
+
+/* Futuristic Hamburger Toggle Icon */
+.nav-toggle-label {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 19px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-toggle-label span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--cyan);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(60, 182, 230, 0.6);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 nav ul {
   display: flex;
+  align-items: center;
   gap: 2rem;
   list-style: none;
 }
@@ -163,7 +189,7 @@ nav ul {
 nav a,
 .header nav a {
   position: relative;
-  padding: 6px 0;
+  padding: 8px 4px;
   color: var(--text-soft);
   font-family: "Share Tech Mono", monospace;
   font-size: 13.5px;
@@ -177,7 +203,7 @@ nav a,
 nav a::after,
 .header nav a::after {
   position: absolute;
-  bottom: -5px;
+  bottom: -2px;
   left: 50%;
   width: 0;
   height: 2px;
@@ -361,36 +387,74 @@ nav a.active::after,
   }
 }
 
+/* ==========================================
+   MOBILE BREAKPOINT (768px & BELOW)
+   ========================================== */
+
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  nav,
-  .navbar,
-  .nav-links {
+  .nav-toggle-label {
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    justify-content: flex-start;
-    gap: 12px;
-    padding: 8px 10px;
-    white-space: nowrap;
   }
-  nav a,
-  .nav-links a,
-  .header nav a {
-    font-size: 14px;
-    margin-left: 0;
-    padding: 5px 10px;
+
+  nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background: rgba(10, 18, 48, 0.96);
+    border-left: 1px solid var(--glass-border-strong);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 5rem 2rem 2rem 2rem;
+    transition: right 0.35s cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .nav-container {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
+
   nav ul {
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  nav li {
+    width: 100%;
+  }
+
+  nav a,
+  .header nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(60, 182, 230, 0.1);
+  }
+
+  nav a::after,
+  .header nav a::after {
+    bottom: 0;
+    left: 0;
+    transform: none;
+  }
+
+  /* Slide-in menu trigger */
+  .nav-toggle:checked ~ nav {
+    right: 0;
+  }
+
+  /* Animated Hamburger Transformation to 'X' */
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
   }
 }
 
