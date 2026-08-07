@@ -152,19 +152,25 @@
     </footer>
 
     <script>
+      const counterElement = document.getElementById("visitor-count");
+
+      let localVisits = parseInt(
+        localStorage.getItem("bacinfo_visits") || "120"
+      );
+      localVisits++;
+      localStorage.setItem("bacinfo_visits", localVisits);
+      counterElement.innerText = localVisits;
+
       fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
         .then((response) => response.json())
         .then((data) => {
           if (data && (data.count !== undefined || data.value !== undefined)) {
-            document.getElementById("visitor-count").innerText =
+            counterElement.innerText =
               data.count !== undefined ? data.count : data.value;
-          } else {
-            document.getElementById("visitor-count").innerText = "1";
           }
         })
         .catch((error) => {
-          console.error("Counter Error:", error);
-          document.getElementById("visitor-count").innerText = "1";
+          console.error("Counter API is offline, using local count:", error);
         });
     </script>
   </body>
