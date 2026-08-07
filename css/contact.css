@@ -113,7 +113,7 @@ small {
 
 header,
 .header {
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 1000;
   display: flex;
@@ -362,17 +362,32 @@ nav a.active::after,
 }
 
 @media (max-width: 768px) {
-  header,
   .header {
     flex-direction: column;
     gap: 0.6rem;
   }
-
+  nav,
+  .navbar,
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  nav a,
+  .nav-links a,
+  .header nav a {
+    font-size: 14px;
+    margin-left: 0;
+    padding: 5px 10px;
+  }
   .nav-container {
     flex-direction: column;
     gap: 0.8rem;
   }
-
   nav ul {
     flex-direction: column;
     gap: 1rem;
