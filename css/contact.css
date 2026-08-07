@@ -1,6 +1,10 @@
-/* ==========================================================================
-   1. IMPORTS & ROOT VARIABLES
-   ========================================================================== */
+/*
+  Vidéo – Stylesheet — ÉDITION FUTURISTE (Interface Holographique)
+  Couleurs conservées : #3cb6e6 (cyan), #1940c0 (dark blue), #2563eb (primary)
+  Motifs : circuits, scan-lines, coins HUD, halos lumineux
+  Typographie : Orbitron (titres), Rajdhani (corps), Share Tech Mono (nav)
+*/
+
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap");
 
 :root {
@@ -13,7 +17,6 @@
   --white: #ffffff;
   --text: #e4ecff;
   --text-soft: #a3b4e0;
-
   --radius: 4px;
   --shadow: 0 8px 30px rgba(37, 99, 235, 0.22);
   --bg-panel: rgba(15, 26, 64, 0.55);
@@ -22,16 +25,12 @@
   --glass-border-strong: rgba(60, 182, 230, 0.45);
   --glow-cyan: 0 0 18px rgba(60, 182, 230, 0.45);
   --glow-primary: 0 0 24px rgba(37, 99, 235, 0.5);
-
   --pat-circuit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M8 8h24v12h20v8h8v16h8v12h8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='88' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Cpath d='M88 88H64v-12H44v-8h-8V52h-8V40H8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
   --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%233cb6e6' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
   --pat-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='1' cy='1' r='1' fill='%233cb6e6' fill-opacity='0.12'/%3E%3C/svg%3E");
   --pat-scan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h8v1H0z' fill='%233cb6e6' fill-opacity='0.03'/%3E%3C/svg%3E");
 }
 
-/* ==========================================================================
-   2. BASE RESETS & TYPOGRAPHY
-   ========================================================================== */
 *,
 *::before,
 *::after {
@@ -52,7 +51,6 @@ body {
   font-family: "Rajdhani", sans-serif;
   font-size: 15px;
   line-height: 1.65;
-  overflow-x: hidden; /* Prevents whole-page horizontal scrolling/zooming */
 }
 
 h1,
@@ -64,8 +62,7 @@ h3,
 }
 
 .mono,
-code,
-small {
+code {
   font-family: "Share Tech Mono", monospace;
 }
 
@@ -73,13 +70,11 @@ small {
   display: block;
   margin-top: 1.5rem;
   color: var(--text-soft);
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.85rem;
   opacity: 0.7;
 }
 
-/* ==========================================================================
-   3. LOGO & BRANDING
-   ========================================================================== */
 .logo,
 .nav-logo {
   color: var(--cyan);
@@ -87,7 +82,6 @@ small {
   font-weight: 800;
   letter-spacing: 1px;
   text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
-  text-decoration: none;
 }
 
 .span1,
@@ -117,12 +111,9 @@ small {
   text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
 }
 
-/* ==========================================================================
-   4. HEADER & NAVIGATION (DESKTOP)
-   ========================================================================== */
 header,
 .header {
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 1000;
   display: flex;
@@ -160,11 +151,11 @@ header::after,
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0.9rem 1.6rem;
 }
 
 nav ul {
   display: flex;
-  align-items: center;
   gap: 2rem;
   list-style: none;
 }
@@ -213,9 +204,6 @@ nav a.active::after,
   width: 100%;
 }
 
-/* ==========================================================================
-   5. CONTACT SECTION & MAIN CONTENT
-   ========================================================================== */
 .contact-wrapper {
   display: flex;
   align-items: center;
@@ -263,13 +251,13 @@ nav a.active::after,
   line-height: 1.7;
 }
 
-.contact-info strong,
-.contact-info i {
+.contact-info strong {
   color: var(--secondary);
 }
 
 .contact-info i {
   margin-bottom: 0.5rem;
+  color: var(--secondary);
   font-size: 18px;
 }
 
@@ -338,9 +326,6 @@ nav a.active::after,
   font-family: "Share Tech Mono", monospace;
 }
 
-/* ==========================================================================
-   6. FOOTER & OTHER SECTIONS
-   ========================================================================== */
 .avis-section {
   padding: 4rem 6%;
   border-top: 1px solid var(--glass-border);
@@ -369,69 +354,56 @@ nav a.active::after,
   text-align: center;
 }
 
-/* ==========================================================================
-   7. RESPONSIVE BREAKPOINTS (MOBILE & TABLET FIXES)
-   ========================================================================== */
-
-/* Medium Screens / Tablets */
 @media (max-width: 900px) {
   .contact-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1.2fr;
     max-width: 95%;
   }
 }
 
-/* 
-   MOBILE FIX: 
-   Wraps the links natively instead of scrolling or pushing layout.
-   Ensures 100% visibility without zooming out. 
-*/
 @media (max-width: 768px) {
-  header,
   .header {
-    padding: 1rem;
     flex-direction: column;
-    gap: 1rem;
-    height: auto; /* Allow header to expand naturally */
+    gap: 0.6rem;
   }
-
-  .nav-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0;
-    width: 100%;
-  }
-
-  nav {
-    width: 100%;
-  }
-
-  nav ul {
+  nav,
+  .navbar,
+  .nav-links {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* Allows links to naturally break to the next line */
-    justify-content: center; /* Keeps everything centered */
-    gap: 1rem 1.5rem; /* Space between rows and columns */
-    padding: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
   }
-
   nav a,
+  .nav-links a,
   .header nav a {
     font-size: 14px;
-    padding: 6px 0;
+    margin-left: 0;
+    padding: 5px 10px;
+  }
+  .nav-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
   }
 }
 
-/* Small Screens Mobile Tweaks */
 @media (max-width: 700px) {
   .contact-wrapper {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 100%;
     padding: 1.5rem;
-    gap: 20px;
   }
 
   .contact-info {

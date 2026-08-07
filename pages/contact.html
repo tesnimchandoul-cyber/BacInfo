@@ -8,12 +8,12 @@
       content="Contactez BacInfo pour poser une question, proposer une correction ou partager une ressource."
     />
     <title>Contact | BacInfo</title>
-    <link rel="icon" type="image/png" href="logo_study_project.png" />
     <!-- Use contact.css if that is the filename of the corrected stylesheet. -->
     <link rel="stylesheet" href="../css/contact.css" />
+    <link rel="icon" type="image/png" href="logo_study_project.png" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
   </head>
 
@@ -76,20 +76,13 @@
       </section>
     </main>
     <script>
-      const visitorCount = document.getElementById("visitor-count");
-
       fetch("https://api.counterapi.dev/v1/bacinfo/visits/up")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Impossible de récupérer le nombre de visiteurs.");
-          }
-          return response.json();
-        })
+        .then((response) => response.json())
         .then((data) => {
-          visitorCount.textContent = data.count ?? "1";
+          document.getElementById("visitor-count").innerText = data.count;
         })
-        .catch(() => {
-          visitorCount.textContent = "1";
+        .catch((error) => {
+          document.getElementById("visitor-count").innerText = "1";
         });
     </script>
   </body>
