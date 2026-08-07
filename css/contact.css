@@ -52,7 +52,7 @@ body {
   font-family: "Rajdhani", sans-serif;
   font-size: 15px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevents whole-page horizontal scrolling/zooming */
 }
 
 h1,
@@ -381,13 +381,18 @@ nav a.active::after,
   }
 }
 
-/* Mobile Clean Layout Fix (Removes vertical panel breaking layout) */
+/* 
+   MOBILE FIX: 
+   Wraps the links natively instead of scrolling or pushing layout.
+   Ensures 100% visibility without zooming out. 
+*/
 @media (max-width: 768px) {
   header,
   .header {
-    padding: 0.8rem 1rem;
+    padding: 1rem;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1rem;
+    height: auto; /* Allow header to expand naturally */
   }
 
   .nav-container {
@@ -395,33 +400,26 @@ nav a.active::after,
     align-items: center;
     gap: 0.8rem;
     padding: 0;
+    width: 100%;
   }
 
   nav {
-    display: flex;
     width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
-    justify-content: center;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  nav::-webkit-scrollbar {
-    display: none;
   }
 
   nav ul {
     display: flex;
     flex-direction: row;
-    gap: 1.2rem;
-    padding: 4px 8px;
+    flex-wrap: wrap; /* Allows links to naturally break to the next line */
+    justify-content: center; /* Keeps everything centered */
+    gap: 1rem 1.5rem; /* Space between rows and columns */
+    padding: 0;
   }
 
   nav a,
   .header nav a {
-    font-size: 13px;
-    padding: 4px 8px;
+    font-size: 14px;
+    padding: 6px 0;
   }
 }
 
