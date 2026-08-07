@@ -1,0 +1,368 @@
+/* ================================================================
+   Vidéo – Stylesheet — ÉDITION FUTURISTE (Interface Holographique)
+   Couleurs conservées : #3cb6e6 (cyan), #1940c0 (dark blue), #2563eb (primary)
+   Motifs : circuits, scan-lines, coins HUD, halos lumineux
+   Typographie : Orbitron (titres), Rajdhani (corps), Share Tech Mono (nav)
+   ================================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap");
+
+:root {
+  /* Palette d'origine conservée */
+  --primary: #2563eb;
+  --primary-soft: #16254d;
+  --secondary: #3cb6e6;
+  --bg: #0a1230;
+  --white: #ffffff;
+  --text: #e4ecff;
+  --text-soft: #a3b4e0;
+  --radius: 4px;            /* coins carrés, style terminal */
+  --shadow: 0 8px 30px rgba(37, 99, 235, 0.22);
+
+  /* Dérivés futuristes */
+  --bg-panel: rgba(15, 26, 64, 0.55);
+  --bg-panel-hover: rgba(20, 34, 84, 0.7);
+  --glass-border: rgba(60, 182, 230, 0.22);
+  --glass-border-strong: rgba(60, 182, 230, 0.45);
+  --glow-cyan: 0 0 18px rgba(60, 182, 230, 0.45);
+  --glow-primary: 0 0 24px rgba(37, 99, 235, 0.5);
+
+  /* Motifs (patterns) */
+  --pat-circuit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M8 8h24v12h20v8h8v16h8v12h8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='88' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Cpath d='M88 88H64v-12H44v-8h-8V52h-8V40H8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%233cb6e6' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='1' cy='1' r='1' fill='%233cb6e6' fill-opacity='0.12'/%3E%3C/svg%3E");
+  --pat-scan: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3E%3Cpath d='M0 0h8v1H0z' fill='%233cb6e6' fill-opacity='0.03'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Rajdhani", "Roboto", sans-serif;
+  background-color: var(--bg);
+  background-image: var(--pat-circuit);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+h1, h2, h3, .logo, .nav-logo {
+  font-family: "Orbitron", sans-serif;
+}
+
+.mono, code {
+  font-family: "Share Tech Mono", monospace;
+}
+
+/* ── Logo / Span ──────────────────────────────────────────── */
+.span1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  color: #3cb6e6;
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+  letter-spacing: 2px;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.span2 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  color: #1940c0;
+  letter-spacing: 2px;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.span1:hover {
+  color: #1940c0;
+  text-shadow: 0 0 18px rgba(60, 182, 230, 0.85);
+}
+.span2:hover {
+  color: #3cb6e6;
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+  letter-spacing: 2px;
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(60, 182, 230, 0.45);
+}
+
+/* ── Header / Nav ─────────────────────────────────────────── */
+header {
+  padding: 1.2rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 18, 48, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(60, 182, 230, 0.15), 0 4px 24px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3cb6e6 25%, #2563eb 75%, transparent);
+  opacity: 0.6;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav a,
+.header nav a {
+  position: relative;
+  text-decoration: none;
+  margin-left: 2rem;
+  color: var(--text-soft);
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 400;
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 0;
+  transition: color 0.25s cubic-bezier(0.23, 1, 0.32, 1), text-shadow 0.25s ease;
+}
+
+/* Barre lumineuse : remplace le soulignement classique */
+nav a::after,
+.header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3cb6e6, #2563eb);
+  box-shadow: 0 0 8px rgba(60, 182, 230, 0.7);
+  transition: width 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+nav a:hover,
+nav a.active,
+.header nav a:hover,
+.header nav a.active {
+  color: #3cb6e6;
+  text-shadow: 0 0 10px rgba(60, 182, 230, 0.45);
+}
+nav a:hover::after,
+nav a.active::after,
+.header nav a:hover::after,
+.header nav a.active::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Videos Section ───────────────────────────────────────── */
+.videos-section {
+  padding: 4rem 6%;
+  background-image: var(--pat-scan);
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.video-card {
+  background: var(--bg-panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  padding: 1rem;
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.18);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+/* Coins HUD en L (haut-gauche + bas-droite) */
+.video-card::before,
+.video-card::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-color: #3cb6e6;
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+}
+.video-card::before {
+  top: 10px;
+  left: 10px;
+  border-width: 2px 0 0 2px;
+}
+.video-card::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2px 2px 0;
+}
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 45px rgba(60, 182, 230, 0.25), var(--glow-cyan);
+  border-color: var(--glass-border-strong);
+}
+.video-card:hover::before,
+.video-card:hover::after {
+  border-color: rgba(60, 182, 230, 0.9);
+}
+
+.video-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(60, 182, 230, 0.12);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-card h3 {
+  margin-top: 1rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+}
+
+.video-card p {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-top: 0.4rem;
+}
+
+/* ── Container & Grid génériques ──────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(8, 14, 40, 0.9);
+  background-image: var(--pat-dots);
+  color: var(--text-soft);
+  box-shadow: 0 -1px 0 rgba(60, 182, 230, 0.2), 0 8px 30px rgba(0, 0, 0, 0.35);
+  border-top: 1px solid var(--glass-border);
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3cb6e6 30%, #2563eb 70%, transparent);
+}
+
+.footer p {
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* ── Animation d'entrée en cascade ────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .video-card {
+    animation: card-rise 0.45s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+  }
+  .video-card:nth-child(2) { animation-delay: 60ms; }
+  .video-card:nth-child(3) { animation-delay: 120ms; }
+  .video-card:nth-child(4) { animation-delay: 180ms; }
+  .video-card:nth-child(5) { animation-delay: 240ms; }
+  .video-card:nth-child(6) { animation-delay: 300ms; }
+
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  nav,
+  .navbar,
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  nav a,
+  .nav-links a,
+  .header nav a {
+    font-size: 14px;
+    margin-left: 0;
+    padding: 5px 10px;
+  }
+  .nav-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+  }
+}

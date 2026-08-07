@@ -1,0 +1,461 @@
+/* ================================================================
+   Matières – Stylesheet — ÉDITION FUTURISTE (Interface Holographique)
+   Couleurs conservées : #3cb6e6 (cyan), #1940c0 (dark blue), #2563eb (primary)
+   Motifs : circuits, scan-lines, coins HUD, halos lumineux
+   Typographie : Orbitron (titres), Rajdhani (corps), Share Tech Mono (nav)
+   ================================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap");
+
+:root {
+  /* Palette d'origine conservée */
+  --primary: #2563eb;
+  --primary-soft: #16254d;
+  --secondary: #3cb6e6;
+  --bg: #0a1230;
+  --white: #ffffff;
+  --text: #e4ecff;
+  --text-soft: #a3b4e0;
+  --radius: 4px;            /* coins carrés, style terminal */
+  --shadow: 0 8px 30px rgba(37, 99, 235, 0.22);
+
+  /* Dérivés futuristes */
+  --bg-panel: rgba(15, 26, 64, 0.55);
+  --bg-panel-hover: rgba(20, 34, 84, 0.7);
+  --glass-border: rgba(60, 182, 230, 0.22);
+  --glass-border-strong: rgba(60, 182, 230, 0.45);
+  --glow-cyan: 0 0 18px rgba(60, 182, 230, 0.45);
+  --glow-primary: 0 0 24px rgba(37, 99, 235, 0.5);
+
+  /* Motifs (patterns) */
+  --pat-circuit: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M8 8h24v12h20v8h8v16h8v12h8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='8' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Ccircle cx='76' cy='88' r='3' fill='%233cb6e6' fill-opacity='0.12'/%3E%3Cpath d='M88 88H64v-12H44v-8h-8V52h-8V40H8' fill='none' stroke='%233cb6e6' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-hex: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100' fill='none' stroke='%233cb6e6' stroke-opacity='0.08' stroke-width='1'/%3E%3C/svg%3E");
+  --pat-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='1' cy='1' r='1' fill='%233cb6e6' fill-opacity='0.12'/%3E%3C/svg%3E");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Rajdhani", system-ui, sans-serif;
+  background-color: var(--bg);
+  background-image: var(--pat-circuit);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+h1, h2, h3, .logo, .nav-logo {
+  font-family: "Orbitron", sans-serif;
+}
+
+.mono, code {
+  font-family: "Share Tech Mono", monospace;
+}
+
+/* ── Logo / Span ──────────────────────────────────────────── */
+.span1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  color: #3cb6e6;
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+  letter-spacing: 2px;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.span2 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 800;
+  color: #1940c0;
+  letter-spacing: 2px;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+.span1:hover {
+  color: #1940c0;
+  text-shadow: 0 0 18px rgba(60, 182, 230, 0.85);
+}
+.span2:hover {
+  color: #3cb6e6;
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  text-shadow: 0 0 14px rgba(60, 182, 230, 0.55);
+  letter-spacing: 2px;
+}
+
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(60, 182, 230, 0.45);
+}
+
+/* ── Header / Nav ─────────────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(10, 18, 48, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 1px 0 rgba(60, 182, 230, 0.15), 0 4px 24px rgba(0, 0, 0, 0.35);
+  padding: 1.2rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3cb6e6 25%, #2563eb 75%, transparent);
+  opacity: 0.6;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.9rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav a,
+.header nav a {
+  position: relative;
+  text-decoration: none;
+  margin-left: 2rem;
+  color: var(--text-soft);
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 400;
+  font-size: 13.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 0;
+  transition: color 0.25s cubic-bezier(0.23, 1, 0.32, 1), background 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Indicateur lumineux : nœud + barre (remplace le soulignement classique) */
+nav a::after,
+.header nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3cb6e6, #2563eb);
+  box-shadow: 0 0 8px rgba(60, 182, 230, 0.7);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateX(-50%);
+}
+
+nav a:hover,
+nav a.active,
+.header nav a:hover,
+.header nav a.active {
+  color: #3cb6e6;
+  text-shadow: 0 0 10px rgba(60, 182, 230, 0.45);
+}
+nav a:hover::after,
+nav a.active::after,
+.header nav a:hover::after,
+.header nav a.active::after {
+  width: 100%;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ── Container & Titre ────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.header h1,
+.titre h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 40px;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-shadow: 0 0 30px rgba(37, 99, 235, 0.5);
+}
+
+.header p,
+.titre p {
+  font-size: 17px;
+  color: var(--text-soft);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.titre {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 6rem;
+}
+
+/* Ligne de données lumineuse sous les titres */
+.header::after,
+.titre::after {
+  content: "";
+  display: block;
+  margin: 1.4rem auto 0;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3cb6e6, #2563eb, transparent);
+  box-shadow: 0 0 12px rgba(60, 182, 230, 0.6);
+  animation: data-flow 2.5s ease-in-out infinite;
+}
+
+@keyframes data-flow {
+  0%, 100% { opacity: 0.4; transform: scaleX(0.75); }
+  50%      { opacity: 1;   transform: scaleX(1.1); }
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  background: var(--bg-panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.18);
+  padding: 2rem;
+  max-width: 300px;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+/* Coins HUD en L (haut-gauche + bas-droite) — signature du motif */
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: #3cb6e6;
+  border-style: solid;
+  pointer-events: none;
+  transition: border-color 0.25s ease;
+}
+.card::before {
+  top: 10px;
+  left: 10px;
+  border-width: 2px 0 0 2px;
+}
+.card::after {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2px 2px 0;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(60, 182, 230, 0.28), var(--glow-cyan);
+  border-color: var(--glass-border-strong);
+  background: var(--bg-panel-hover);
+}
+.card:hover::before,
+.card:hover::after {
+  border-color: rgba(60, 182, 230, 0.9);
+}
+
+.card i {
+  font-size: 3rem;
+  background: linear-gradient(135deg, #3cb6e6, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 8px rgba(60, 182, 230, 0.45));
+  transition: all 0.3s ease;
+}
+/* Survol de l'icône : rotation + intensification lumineuse (le jaune #ffcc00 est remplacé par le cyan lumineux) */
+.card:hover i {
+  -webkit-text-fill-color: #7ed8ff;
+  background: linear-gradient(135deg, #7ed8ff, #3cb6e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  transform: rotate(15deg) scale(1.2);
+  filter: drop-shadow(0 0 16px rgba(60, 182, 230, 0.8));
+}
+
+.card h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.card p {
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 1.5rem;
+}
+
+.card button {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border-radius: 3px;                       /* bouton terminal, plus carré */
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(25, 64, 192, 0.95));
+  border: 1px solid rgba(60, 182, 230, 0.4);
+  color: #fff;
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: inset 0 0 16px rgba(60, 182, 230, 0.12);
+}
+/* Le survol devient cyan lumineux au lieu de jaune pour rester fidèle à la palette */
+.card button:hover {
+  background: linear-gradient(135deg, rgba(60, 182, 230, 0.85), rgba(37, 99, 235, 0.95));
+  border-color: #3cb6e6;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: var(--glow-cyan), 0 6px 20px rgba(60, 182, 230, 0.35);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(8, 14, 40, 0.9);
+  background-image: var(--pat-dots);
+  color: var(--text-soft);
+  box-shadow: 0 -1px 0 rgba(60, 182, 230, 0.2), 0 8px 30px rgba(0, 0, 0, 0.35);
+  border-top: 1px solid var(--glass-border);
+  position: relative;
+}
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3cb6e6 30%, #2563eb 70%, transparent);
+}
+
+.footer p {
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+/* ── Animation d'entrée en cascade ────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .card {
+    animation: card-rise 0.45s cubic-bezier(0.23, 1, 0.32, 1) backwards;
+  }
+  .card:nth-child(2) { animation-delay: 60ms; }
+  .card:nth-child(3) { animation-delay: 120ms; }
+  .card:nth-child(4) { animation-delay: 180ms; }
+  .card:nth-child(5) { animation-delay: 240ms; }
+  .card:nth-child(6) { animation-delay: 300ms; }
+
+  @keyframes card-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1,
+  .titre h1 {
+    font-size: 30px;
+  }
+  .header p,
+  .titre p {
+    font-size: 15px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  nav,
+  .navbar,
+  .nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+  nav a,
+  .nav-links a,
+  .header nav a {
+    font-size: 14px;
+    margin-left: 0;
+    padding: 5px 10px;
+  }
+  .nav-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
